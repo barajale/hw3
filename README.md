@@ -4,10 +4,10 @@
 You must fill out the following form. Please see Canvas for detailed instructions.
 
 ---
-- Name: ____ ____
-- URL to video demo: https://..........
-- URL to deployed webpage: https://..........
-- Optional comment: __________
+- Name: Alexander Barajas-Ritchie
+- URL to video demo: https://youtu.be/b9JKaZ79uiU
+- URL to deployed webpage: https://alex-barajas-hw3-p826wprpj-barajale.vercel.app
+- Optional comment: Was unable to implement some of the functionality 
 
 ---
 
