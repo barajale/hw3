@@ -209,6 +209,13 @@
 									</g>
 								{/each}
 
+								<!-- {#each binbyClass as bin, i}
+
+									here I need to go over each class and place the predicted value
+									in the corresponding tick 
+
+								{/each} -->
+
 							</g>
 						{/each}
 					</g>
