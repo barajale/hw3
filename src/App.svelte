@@ -91,6 +91,9 @@
 			10
 		])
 		.range([50, 400]);
+
+		
+
 	
 
 	selected_point = data[0]
@@ -117,6 +120,12 @@
 		data.forEach(record => {
 			record.selected = false;
 		});
+	}
+
+	function scaleX(x){
+		if(x > 4){
+
+		}
 	}
 </script>
 
@@ -206,12 +215,18 @@
 										</g>
 									{/each}
 
-									{#each binsForClass.bins as bin, i}
-										<g transform="translate({xScale_new(bin.binNo) + 50}, {yScale_new(binsForClass.class) -10})">
-												{#each bin.instances as point}
-													<image href={"/static/images/"+ point.filename} alt="{point.filename}" width="10" height="10"/> 
+									{#each binsForClass.bins as bin, g}
+												{#each bin.instances as point, j}
+													<image href={"/static/images/"+ point.filename} alt="{point.filename}" width="10" height="10"
+														x = {50 + xScale_new(bin.binNo) + 10 * (j % 8)}
+														y = {yScale_new(binsForClass.class) + (-10 - (10 * (Math.floor((j/8)))))} 
+														
+														/>
+													<rect width="10" height="10"
+														x = {50 + xScale_new(bin.binNo) + 10 * (j % 8)}
+														y = {yScale_new(binsForClass.class) + (- 10 - (Math.floor((j/8)) * 10))} 
+														style="fill: {getColor(point["true_label"])}; stroke: {getColor(point["predicted_label"])}; fill-opacity: {.5};"/>
 												{/each}
-										</g>
 									{/each}
 								</g>
 							{/each}
