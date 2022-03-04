@@ -33,14 +33,22 @@
 
 
 
-		// Transform data
 		for (let k = 0; k < numClasses; ++k) {
 			let binsForClass = [];
 			for (let b = 0; b < numBins; ++b) {
-				binsForClass.push({"class": k, "binNo": b, "instances": []});
+				binsForClass.push({
+					"class": k,
+					"binNo": b,
+					"instances": instances.filter(instance =>
+						k == instance.true_label &&
+						b == Math.min(Math.floor(instance.predicted_scores[instance.true_label] * numBins), numBins - 1)
+					)});
 			}
 			binsByClasses.push({"class": k, "bins": binsForClass});
 		}
+
+		console.log(binsByClasses)
+
 
 		
 		instances.forEach(instance => {
@@ -72,7 +80,7 @@
 		xScale_new = scaleLinear()
 		.domain([
 			0,
-			1
+			10
 		])
 		.range([0, 900]);
 
@@ -80,15 +88,17 @@
 		yScale_new = scaleLinear()
 		.domain([
 			0,
-			1
+			10
 		])
-		.range([0, 500]);
+		.range([50, 400]);
 	
 
 	selected_point = data[0]
 
-	xScaleTicks = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-	console.log(xScaleTicks)
+	xScaleTicks = xScale_new.ticks(10);
+	yScaleTicks = yScale_new.ticks(10);
+
+	//console.log(xScaleTicks)
 	
 });
 
@@ -108,11 +118,6 @@
 			record.selected = false;
 		});
 	}
-
-	
-
-	
-
 </script>
 
 <main>
@@ -152,8 +157,6 @@
 							/> 
 						{/each}
 					</g>
-
-					
 				</svg>
 			</div>
 			<div id="selected-image-view" class="view-panel">
@@ -162,22 +165,17 @@
 					<div id="the whole thing" style="height:100%; width:100%; overflow: hidden;">
 						<div id="content" style="float: left; width:50%">
 							{#if selected_point !== null}
-								<img src={"/static/images/" + selected_point.filename} alt="" width="80" height="80"/>								
+								<img src={"/static/images/" + selected_point.filename} alt="" width="80" height="80"/>						
 							{/if}
-						
 						</div>
-
 						<div id="rightThing" style="float: left; width:25%;">
 								{#if selected_point !== null}
 									ID: {selected_point.id} <br>
 									Labeled as {selected_point.true_label} <br>
 									Predicted as {selected_point.predicted_label}<br>
 								{/if}
-			
 						</div>
 					</div>
-
-					
 				</div>
 			</div>
 		</div>
@@ -196,28 +194,29 @@
 							</g>
 						{/each}
 
-						{#each xScaleTicks as tick, i} 
-							<g>
-								<text x = {0}, y = {yScale_new(tick) + 100}>Class </text>
-								<text x = {40}, y = {yScale_new(tick) + 100}, style="fill: {getColor(i)};"> {i} </text>
-								<text x = {0}, y = {yScale_new(tick) + 112}>Labeled as {i}</text>
-								<text x = {0}, y = {yScale_new(tick) + 124}>Predicted as {i}</text>
-								<line class="axis" y1 = {yScale_new(tick) + 100} y2 = {yScale_new(tick) +100} x1= {50} x2={950} />
-								{#each xScaleTicks as tick_1}
-									<g transform="translate({50 + xScale_new(tick_1)}, {yScale_new(tick) +100})">
-										<line class="axis" y2="-5" />
-									</g>
-								{/each}
+						{#if instances !== undefined}
+							{#each binsByClasses as binsForClass}
+								<g transform="translate(0, {binsForClass.class * 20 + 15})">
 
-								<!-- {#each binbyClass as bin, i}
+									<text x = {0}, y = {yScale_new(binsForClass.class)}> Class {binsForClass.class} </text>
+									<line class="axis" y1 = {yScale_new(binsForClass.class)} y2 = {yScale_new(binsForClass.class)} x1= {50} x2={950} />
+									{#each xScaleTicks as tick_1}
+										<g transform="translate({50 + xScale_new(tick_1)}, {yScale_new(binsForClass.class)})">
+											<line class="axis" y2="-5" />
+										</g>
+									{/each}
 
-									here I need to go over each class and place the predicted value
-									in the corresponding tick 
+									{#each binsForClass.bins as bin, i}
+										<g transform="translate({xScale_new(bin.binNo) + 50}, {yScale_new(binsForClass.class) -10})">
+												{#each bin.instances as point}
+													<image href={"/static/images/"+ point.filename} alt="{point.filename}" width="10" height="10"/> 
+												{/each}
+										</g>
+									{/each}
+								</g>
+							{/each}
+						{/if}
 
-								{/each} -->
-
-							</g>
-						{/each}
 					</g>
 				</svg>
 			</div>

@@ -1762,33 +1762,45 @@ var app = (function () {
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
     	child_ctx[15] = list[i];
-    	child_ctx[17] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
     	child_ctx[18] = list[i];
+    	child_ctx[20] = i;
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[15] = list[i];
-    	child_ctx[17] = i;
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[22] = list[i];
-    	child_ctx[23] = list;
-    	child_ctx[24] = i;
+    	child_ctx[24] = list[i];
     	return child_ctx;
     }
 
-    // (128:6) {#each data as record}
-    function create_each_block_3(ctx) {
+    function get_each_context_4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[27] = list[i];
+    	child_ctx[20] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_5(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[29] = list[i];
+    	child_ctx[30] = list;
+    	child_ctx[31] = i;
+    	return child_ctx;
+    }
+
+    // (133:6) {#each data as record}
+    function create_each_block_5(ctx) {
     	let circle;
     	let circle_id_value;
     	let circle_class_value;
@@ -1798,27 +1810,27 @@ var app = (function () {
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[10](/*record*/ ctx[22], /*each_value_3*/ ctx[23], /*record_index*/ ctx[24]);
+    		return /*click_handler*/ ctx[12](/*record*/ ctx[29], /*each_value_5*/ ctx[30], /*record_index*/ ctx[31]);
     	}
 
     	const block = {
     		c: function create() {
     			circle = svg_element("circle");
-    			attr_dev(circle, "id", circle_id_value = "datapoint-" + /*record*/ ctx[22].id);
+    			attr_dev(circle, "id", circle_id_value = "datapoint-" + /*record*/ ctx[29].id);
 
-    			attr_dev(circle, "class", circle_class_value = "point " + (/*record*/ ctx[22].selected == true
+    			attr_dev(circle, "class", circle_class_value = "point " + (/*record*/ ctx[29].selected == true
     			? "selected"
     			: "cirlce") + " svelte-xmnc95");
 
-    			attr_dev(circle, "cx", circle_cx_value = /*xScale*/ ctx[0](/*record*/ ctx[22].projection[0]) + 25);
-    			attr_dev(circle, "cy", circle_cy_value = /*yScale*/ ctx[2](/*record*/ ctx[22].projection[1]) + 25);
+    			attr_dev(circle, "cx", circle_cx_value = /*xScale*/ ctx[0](/*record*/ ctx[29].projection[0]) + 25);
+    			attr_dev(circle, "cy", circle_cy_value = /*yScale*/ ctx[2](/*record*/ ctx[29].projection[1]) + 25);
     			attr_dev(circle, "r", "3");
-    			set_style(circle, "fill", /*getColor*/ ctx[7](/*record*/ ctx[22]["true_label"]));
-    			set_style(circle, "stroke", /*getColor*/ ctx[7](/*record*/ ctx[22]["predicted_label"]));
+    			set_style(circle, "fill", /*getColor*/ ctx[9](/*record*/ ctx[29]["true_label"]));
+    			set_style(circle, "stroke", /*getColor*/ ctx[9](/*record*/ ctx[29]["predicted_label"]));
     			set_style(circle, "stroke-width", 2.2);
     			set_style(circle, "stroke-opacity", .5);
     			set_style(circle, "fill-opacity", .5);
-    			add_location(circle, file, 128, 7, 2524);
+    			add_location(circle, file, 133, 7, 2723);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, circle, anchor);
@@ -1831,30 +1843,30 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty & /*data*/ 64 && circle_id_value !== (circle_id_value = "datapoint-" + /*record*/ ctx[22].id)) {
+    			if (dirty[0] & /*data*/ 128 && circle_id_value !== (circle_id_value = "datapoint-" + /*record*/ ctx[29].id)) {
     				attr_dev(circle, "id", circle_id_value);
     			}
 
-    			if (dirty & /*data*/ 64 && circle_class_value !== (circle_class_value = "point " + (/*record*/ ctx[22].selected == true
+    			if (dirty[0] & /*data*/ 128 && circle_class_value !== (circle_class_value = "point " + (/*record*/ ctx[29].selected == true
     			? "selected"
     			: "cirlce") + " svelte-xmnc95")) {
     				attr_dev(circle, "class", circle_class_value);
     			}
 
-    			if (dirty & /*xScale, data*/ 65 && circle_cx_value !== (circle_cx_value = /*xScale*/ ctx[0](/*record*/ ctx[22].projection[0]) + 25)) {
+    			if (dirty[0] & /*xScale, data*/ 129 && circle_cx_value !== (circle_cx_value = /*xScale*/ ctx[0](/*record*/ ctx[29].projection[0]) + 25)) {
     				attr_dev(circle, "cx", circle_cx_value);
     			}
 
-    			if (dirty & /*yScale, data*/ 68 && circle_cy_value !== (circle_cy_value = /*yScale*/ ctx[2](/*record*/ ctx[22].projection[1]) + 25)) {
+    			if (dirty[0] & /*yScale, data*/ 132 && circle_cy_value !== (circle_cy_value = /*yScale*/ ctx[2](/*record*/ ctx[29].projection[1]) + 25)) {
     				attr_dev(circle, "cy", circle_cy_value);
     			}
 
-    			if (dirty & /*data*/ 64) {
-    				set_style(circle, "fill", /*getColor*/ ctx[7](/*record*/ ctx[22]["true_label"]));
+    			if (dirty[0] & /*data*/ 128) {
+    				set_style(circle, "fill", /*getColor*/ ctx[9](/*record*/ ctx[29]["true_label"]));
     			}
 
-    			if (dirty & /*data*/ 64) {
-    				set_style(circle, "stroke", /*getColor*/ ctx[7](/*record*/ ctx[22]["predicted_label"]));
+    			if (dirty[0] & /*data*/ 128) {
+    				set_style(circle, "stroke", /*getColor*/ ctx[9](/*record*/ ctx[29]["predicted_label"]));
     			}
     		},
     		d: function destroy(detaching) {
@@ -1866,34 +1878,34 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_3.name,
+    		id: create_each_block_5.name,
     		type: "each",
-    		source: "(128:6) {#each data as record}",
+    		source: "(133:6) {#each data as record}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (164:7) {#if selected_point !== null}
-    function create_if_block_1(ctx) {
+    // (167:7) {#if selected_point !== null}
+    function create_if_block_2(ctx) {
     	let img;
     	let img_src_value;
 
     	const block = {
     		c: function create() {
     			img = element("img");
-    			if (!src_url_equal(img.src, img_src_value = "/static/images/" + /*selected_point*/ ctx[4].filename)) attr_dev(img, "src", img_src_value);
+    			if (!src_url_equal(img.src, img_src_value = "/static/images/" + /*selected_point*/ ctx[5].filename)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "");
     			attr_dev(img, "width", "80");
     			attr_dev(img, "height", "80");
-    			add_location(img, file, 164, 8, 3644);
+    			add_location(img, file, 167, 8, 3836);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*selected_point*/ 16 && !src_url_equal(img.src, img_src_value = "/static/images/" + /*selected_point*/ ctx[4].filename)) {
+    			if (dirty[0] & /*selected_point*/ 32 && !src_url_equal(img.src, img_src_value = "/static/images/" + /*selected_point*/ ctx[5].filename)) {
     				attr_dev(img, "src", img_src_value);
     			}
     		},
@@ -1904,29 +1916,29 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1.name,
+    		id: create_if_block_2.name,
     		type: "if",
-    		source: "(164:7) {#if selected_point !== null}",
+    		source: "(167:7) {#if selected_point !== null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (171:8) {#if selected_point !== null}
-    function create_if_block(ctx) {
+    // (172:8) {#if selected_point !== null}
+    function create_if_block_1(ctx) {
     	let t0;
-    	let t1_value = /*selected_point*/ ctx[4].id + "";
+    	let t1_value = /*selected_point*/ ctx[5].id + "";
     	let t1;
     	let t2;
     	let br0;
     	let t3;
-    	let t4_value = /*selected_point*/ ctx[4].true_label + "";
+    	let t4_value = /*selected_point*/ ctx[5].true_label + "";
     	let t4;
     	let t5;
     	let br1;
     	let t6;
-    	let t7_value = /*selected_point*/ ctx[4].predicted_label + "";
+    	let t7_value = /*selected_point*/ ctx[5].predicted_label + "";
     	let t7;
     	let br2;
 
@@ -1943,9 +1955,9 @@ var app = (function () {
     			t6 = text("\n\t\t\t\t\t\t\t\t\tPredicted as ");
     			t7 = text(t7_value);
     			br2 = element("br");
-    			add_location(br0, file, 171, 33, 3904);
-    			add_location(br1, file, 172, 48, 3957);
-    			add_location(br2, file, 173, 54, 4016);
+    			add_location(br0, file, 172, 33, 4086);
+    			add_location(br1, file, 173, 48, 4139);
+    			add_location(br2, file, 174, 54, 4198);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -1961,9 +1973,9 @@ var app = (function () {
     			insert_dev(target, br2, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*selected_point*/ 16 && t1_value !== (t1_value = /*selected_point*/ ctx[4].id + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*selected_point*/ 16 && t4_value !== (t4_value = /*selected_point*/ ctx[4].true_label + "")) set_data_dev(t4, t4_value);
-    			if (dirty & /*selected_point*/ 16 && t7_value !== (t7_value = /*selected_point*/ ctx[4].predicted_label + "")) set_data_dev(t7, t7_value);
+    			if (dirty[0] & /*selected_point*/ 32 && t1_value !== (t1_value = /*selected_point*/ ctx[5].id + "")) set_data_dev(t1, t1_value);
+    			if (dirty[0] & /*selected_point*/ 32 && t4_value !== (t4_value = /*selected_point*/ ctx[5].true_label + "")) set_data_dev(t4, t4_value);
+    			if (dirty[0] & /*selected_point*/ 32 && t7_value !== (t7_value = /*selected_point*/ ctx[5].predicted_label + "")) set_data_dev(t7, t7_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(t0);
@@ -1982,21 +1994,21 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block.name,
+    		id: create_if_block_1.name,
     		type: "if",
-    		source: "(171:8) {#if selected_point !== null}",
+    		source: "(172:8) {#if selected_point !== null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (191:6) {#each xScaleTicks as tick, i}
-    function create_each_block_2(ctx) {
+    // (189:6) {#each xScaleTicks as tick, i}
+    function create_each_block_4(ctx) {
     	let g;
     	let line;
     	let text_1;
-    	let t_value = /*tick*/ ctx[15] + "";
+    	let t_value = /*tick*/ ctx[27] + "";
     	let t;
     	let g_transform_value;
 
@@ -2008,12 +2020,12 @@ var app = (function () {
     			t = text(t_value);
     			attr_dev(line, "class", "axis svelte-xmnc95");
     			attr_dev(line, "y2", "-5");
-    			add_location(line, file, 192, 8, 4475);
+    			add_location(line, file, 190, 8, 4646);
     			attr_dev(text_1, "x", -10);
     			attr_dev(text_1, "y", "20");
-    			add_location(text_1, file, 193, 8, 4513);
-    			attr_dev(g, "transform", g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick*/ ctx[15])) + ", 0)");
-    			add_location(g, file, 191, 7, 4413);
+    			add_location(text_1, file, 191, 8, 4684);
+    			attr_dev(g, "transform", g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick*/ ctx[27])) + ", 0)");
+    			add_location(g, file, 189, 7, 4584);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, g, anchor);
@@ -2022,9 +2034,9 @@ var app = (function () {
     			append_dev(text_1, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*xScaleTicks*/ 32 && t_value !== (t_value = /*tick*/ ctx[15] + "")) set_data_dev(t, t_value);
+    			if (dirty[0] & /*xScaleTicks*/ 64 && t_value !== (t_value = /*tick*/ ctx[27] + "")) set_data_dev(t, t_value);
 
-    			if (dirty & /*xScale_new, xScaleTicks*/ 34 && g_transform_value !== (g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick*/ ctx[15])) + ", 0)")) {
+    			if (dirty[0] & /*xScale_new, xScaleTicks*/ 66 && g_transform_value !== (g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick*/ ctx[27])) + ", 0)")) {
     				attr_dev(g, "transform", g_transform_value);
     			}
     		},
@@ -2035,17 +2047,85 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_2.name,
+    		id: create_each_block_4.name,
     		type: "each",
-    		source: "(191:6) {#each xScaleTicks as tick, i}",
+    		source: "(189:6) {#each xScaleTicks as tick, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (206:8) {#each xScaleTicks as tick_1}
-    function create_each_block_1(ctx) {
+    // (197:6) {#if instances !== undefined}
+    function create_if_block(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*binsByClasses*/ ctx[8];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*binsByClasses, xScale_new, yScale_new, xScaleTicks*/ 330) {
+    				each_value = /*binsByClasses*/ ctx[8];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(197:6) {#if instances !== undefined}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (203:9) {#each xScaleTicks as tick_1}
+    function create_each_block_3(ctx) {
     	let g;
     	let line;
     	let g_transform_value;
@@ -2056,16 +2136,16 @@ var app = (function () {
     			line = svg_element("line");
     			attr_dev(line, "class", "axis svelte-xmnc95");
     			attr_dev(line, "y2", "-5");
-    			add_location(line, file, 207, 10, 5188);
-    			attr_dev(g, "transform", g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick_1*/ ctx[18])) + ", " + (/*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100) + ")");
-    			add_location(g, file, 206, 9, 5100);
+    			add_location(line, file, 204, 11, 5276);
+    			attr_dev(g, "transform", g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick_1*/ ctx[24])) + ", " + /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) + ")");
+    			add_location(g, file, 203, 10, 5178);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, g, anchor);
     			append_dev(g, line);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*xScale_new, xScaleTicks, yScale_new*/ 42 && g_transform_value !== (g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick_1*/ ctx[18])) + ", " + (/*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100) + ")")) {
+    			if (dirty[0] & /*xScale_new, xScaleTicks, yScale_new*/ 74 && g_transform_value !== (g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick_1*/ ctx[24])) + ", " + /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) + ")")) {
     				attr_dev(g, "transform", g_transform_value);
     			}
     		},
@@ -2076,36 +2156,145 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_1.name,
+    		id: create_each_block_3.name,
     		type: "each",
-    		source: "(206:8) {#each xScaleTicks as tick_1}",
+    		source: "(203:9) {#each xScaleTicks as tick_1}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (199:6) {#each xScaleTicks as tick, i}
+    // (211:12) {#each bin.instances as point}
+    function create_each_block_2(ctx) {
+    	let image;
+
+    	const block = {
+    		c: function create() {
+    			image = svg_element("image");
+    			attr_dev(image, "href", "/static/images/" + /*point*/ ctx[21].filename);
+    			attr_dev(image, "alt", /*point*/ ctx[21].filename);
+    			attr_dev(image, "width", "10");
+    			attr_dev(image, "height", "10");
+    			add_location(image, file, 211, 13, 5544);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, image, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(image);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_2.name,
+    		type: "each",
+    		source: "(211:12) {#each bin.instances as point}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (209:9) {#each binsForClass.bins as bin, i}
+    function create_each_block_1(ctx) {
+    	let g;
+    	let g_transform_value;
+    	let each_value_2 = /*bin*/ ctx[18].instances;
+    	validate_each_argument(each_value_2);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			g = svg_element("g");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(g, "transform", g_transform_value = "translate(" + (/*xScale_new*/ ctx[1](/*bin*/ ctx[18].binNo) + 50) + ", " + (/*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) - 10) + ")");
+    			add_location(g, file, 209, 10, 5394);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, g, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(g, null);
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*binsByClasses*/ 256) {
+    				each_value_2 = /*bin*/ ctx[18].instances;
+    				validate_each_argument(each_value_2);
+    				let i;
+
+    				for (i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(g, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_2.length;
+    			}
+
+    			if (dirty[0] & /*xScale_new, yScale_new*/ 10 && g_transform_value !== (g_transform_value = "translate(" + (/*xScale_new*/ ctx[1](/*bin*/ ctx[18].binNo) + 50) + ", " + (/*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) - 10) + ")")) {
+    				attr_dev(g, "transform", g_transform_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(g);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(209:9) {#each binsForClass.bins as bin, i}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (198:7) {#each binsByClasses as binsForClass}
     function create_each_block(ctx) {
     	let g;
-    	let text0;
+    	let text_1;
     	let t0;
-    	let text0_y_value;
-    	let text1;
+    	let t1_value = /*binsForClass*/ ctx[15].class + "";
     	let t1;
-    	let text1_y_value;
-    	let text2;
-    	let t2;
-    	let t3;
-    	let text2_y_value;
-    	let text3;
-    	let t4;
-    	let t5;
-    	let text3_y_value;
+    	let text_1_y_value;
     	let line;
     	let line_y__value;
     	let line_y__value_1;
-    	let each_value_1 = /*xScaleTicks*/ ctx[5];
+    	let each0_anchor;
+    	let each_value_3 = /*xScaleTicks*/ ctx[6];
+    	validate_each_argument(each_value_3);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_3.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
+    	}
+
+    	let each_value_1 = /*binsForClass*/ ctx[15].bins;
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -2116,88 +2305,89 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			g = svg_element("g");
-    			text0 = svg_element("text");
+    			text_1 = svg_element("text");
     			t0 = text("Class ");
-    			text1 = svg_element("text");
-    			t1 = text(/*i*/ ctx[17]);
-    			text2 = svg_element("text");
-    			t2 = text("Labeled as ");
-    			t3 = text(/*i*/ ctx[17]);
-    			text3 = svg_element("text");
-    			t4 = text("Predicted as ");
-    			t5 = text(/*i*/ ctx[17]);
+    			t1 = text(t1_value);
     			line = svg_element("line");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			each0_anchor = empty();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(text0, "x", "" + (0 + ","));
-    			attr_dev(text0, "y", text0_y_value = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100);
-    			add_location(text0, file, 200, 8, 4642);
-    			attr_dev(text1, "x", "" + (40 + ","));
-    			attr_dev(text1, "y", text1_y_value = "" + (/*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100 + ","));
-    			set_style(text1, "fill", /*getColor*/ ctx[7](/*i*/ ctx[17]));
-    			add_location(text1, file, 201, 8, 4708);
-    			attr_dev(text2, "x", "" + (0 + ","));
-    			attr_dev(text2, "y", text2_y_value = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 112);
-    			add_location(text2, file, 202, 8, 4804);
-    			attr_dev(text3, "x", "" + (0 + ","));
-    			attr_dev(text3, "y", text3_y_value = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 124);
-    			add_location(text3, file, 203, 8, 4878);
+    			attr_dev(text_1, "x", "" + (0 + ","));
+    			attr_dev(text_1, "y", text_1_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class));
+    			add_location(text_1, file, 200, 9, 4916);
     			attr_dev(line, "class", "axis svelte-xmnc95");
-    			attr_dev(line, "y1", line_y__value = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100);
-    			attr_dev(line, "y2", line_y__value_1 = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100);
+    			attr_dev(line, "y1", line_y__value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class));
+    			attr_dev(line, "y2", line_y__value_1 = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class));
     			attr_dev(line, "x1", 50);
     			attr_dev(line, "x2", 950);
-    			add_location(line, file, 204, 8, 4954);
-    			add_location(g, file, 199, 7, 4630);
+    			add_location(line, file, 201, 9, 5013);
+    			attr_dev(g, "transform", "translate(0, " + (/*binsForClass*/ ctx[15].class * 20 + 15) + ")");
+    			add_location(g, file, 198, 8, 4845);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, g, anchor);
-    			append_dev(g, text0);
-    			append_dev(text0, t0);
-    			append_dev(g, text1);
-    			append_dev(text1, t1);
-    			append_dev(g, text2);
-    			append_dev(text2, t2);
-    			append_dev(text2, t3);
-    			append_dev(g, text3);
-    			append_dev(text3, t4);
-    			append_dev(text3, t5);
+    			append_dev(g, text_1);
+    			append_dev(text_1, t0);
+    			append_dev(text_1, t1);
     			append_dev(g, line);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(g, null);
+    			}
+
+    			append_dev(g, each0_anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(g, null);
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*yScale_new, xScaleTicks*/ 40 && text0_y_value !== (text0_y_value = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100)) {
-    				attr_dev(text0, "y", text0_y_value);
+    			if (dirty[0] & /*yScale_new*/ 8 && text_1_y_value !== (text_1_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class))) {
+    				attr_dev(text_1, "y", text_1_y_value);
     			}
 
-    			if (dirty & /*yScale_new, xScaleTicks*/ 40 && text1_y_value !== (text1_y_value = "" + (/*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100 + ","))) {
-    				attr_dev(text1, "y", text1_y_value);
-    			}
-
-    			if (dirty & /*yScale_new, xScaleTicks*/ 40 && text2_y_value !== (text2_y_value = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 112)) {
-    				attr_dev(text2, "y", text2_y_value);
-    			}
-
-    			if (dirty & /*yScale_new, xScaleTicks*/ 40 && text3_y_value !== (text3_y_value = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 124)) {
-    				attr_dev(text3, "y", text3_y_value);
-    			}
-
-    			if (dirty & /*yScale_new, xScaleTicks*/ 40 && line_y__value !== (line_y__value = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100)) {
+    			if (dirty[0] & /*yScale_new*/ 8 && line_y__value !== (line_y__value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class))) {
     				attr_dev(line, "y1", line_y__value);
     			}
 
-    			if (dirty & /*yScale_new, xScaleTicks*/ 40 && line_y__value_1 !== (line_y__value_1 = /*yScale_new*/ ctx[3](/*tick*/ ctx[15]) + 100)) {
+    			if (dirty[0] & /*yScale_new*/ 8 && line_y__value_1 !== (line_y__value_1 = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class))) {
     				attr_dev(line, "y2", line_y__value_1);
     			}
 
-    			if (dirty & /*xScale_new, xScaleTicks, yScale_new*/ 42) {
-    				each_value_1 = /*xScaleTicks*/ ctx[5];
+    			if (dirty[0] & /*xScale_new, xScaleTicks, yScale_new, binsByClasses*/ 330) {
+    				each_value_3 = /*xScaleTicks*/ ctx[6];
+    				validate_each_argument(each_value_3);
+    				let i;
+
+    				for (i = 0; i < each_value_3.length; i += 1) {
+    					const child_ctx = get_each_context_3(ctx, each_value_3, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_3(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(g, each0_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_3.length;
+    			}
+
+    			if (dirty[0] & /*xScale_new, binsByClasses, yScale_new*/ 266) {
+    				each_value_1 = /*binsForClass*/ ctx[15].bins;
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -2222,6 +2412,7 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(g);
+    			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
     		}
     	};
@@ -2230,7 +2421,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(199:6) {#each xScaleTicks as tick, i}",
+    		source: "(198:7) {#each binsByClasses as binsForClass}",
     		ctx
     	});
 
@@ -2266,31 +2457,25 @@ var app = (function () {
     	let line;
     	let g1;
     	let each1_anchor;
-    	let each_value_3 = /*data*/ ctx[6];
-    	validate_each_argument(each_value_3);
-    	let each_blocks_2 = [];
-
-    	for (let i = 0; i < each_value_3.length; i += 1) {
-    		each_blocks_2[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
-    	}
-
-    	let if_block0 = /*selected_point*/ ctx[4] !== null && create_if_block_1(ctx);
-    	let if_block1 = /*selected_point*/ ctx[4] !== null && create_if_block(ctx);
-    	let each_value_2 = /*xScaleTicks*/ ctx[5];
-    	validate_each_argument(each_value_2);
+    	let each_value_5 = /*data*/ ctx[7];
+    	validate_each_argument(each_value_5);
     	let each_blocks_1 = [];
 
-    	for (let i = 0; i < each_value_2.length; i += 1) {
-    		each_blocks_1[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	for (let i = 0; i < each_value_5.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
     	}
 
-    	let each_value = /*xScaleTicks*/ ctx[5];
-    	validate_each_argument(each_value);
+    	let if_block0 = /*selected_point*/ ctx[5] !== null && create_if_block_2(ctx);
+    	let if_block1 = /*selected_point*/ ctx[5] !== null && create_if_block_1(ctx);
+    	let each_value_4 = /*xScaleTicks*/ ctx[6];
+    	validate_each_argument(each_value_4);
     	let each_blocks = [];
 
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	for (let i = 0; i < each_value_4.length; i += 1) {
+    		each_blocks[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
     	}
+
+    	let if_block2 = /*instances*/ ctx[4] !== undefined && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
@@ -2307,8 +2492,8 @@ var app = (function () {
     			svg0 = svg_element("svg");
     			g0 = svg_element("g");
 
-    			for (let i = 0; i < each_blocks_2.length; i += 1) {
-    				each_blocks_2[i].c();
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
     			}
 
     			t4 = space();
@@ -2333,77 +2518,73 @@ var app = (function () {
     			line = svg_element("line");
     			g1 = svg_element("g");
 
-    			for (let i = 0; i < each_blocks_1.length; i += 1) {
-    				each_blocks_1[i].c();
-    			}
-
-    			each1_anchor = empty();
-
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
+    			each1_anchor = empty();
+    			if (if_block2) if_block2.c();
     			attr_dev(h1, "class", "svelte-xmnc95");
-    			add_location(h1, file, 118, 1, 2205);
+    			add_location(h1, file, 123, 1, 2404);
     			attr_dev(div0, "class", "view-title svelte-xmnc95");
-    			add_location(div0, file, 124, 4, 2370);
+    			add_location(div0, file, 129, 4, 2569);
     			attr_dev(g0, "id", "scatterplotData");
-    			add_location(g0, file, 126, 5, 2463);
+    			add_location(g0, file, 131, 5, 2662);
     			set_style(svg0, "width", "400");
     			set_style(svg0, "height", "400");
     			attr_dev(svg0, "class", "svelte-xmnc95");
-    			add_location(svg0, file, 125, 4, 2420);
+    			add_location(svg0, file, 130, 4, 2619);
     			attr_dev(div1, "id", "projection-view");
     			attr_dev(div1, "class", "view-panel svelte-xmnc95");
-    			add_location(div1, file, 123, 3, 2320);
+    			add_location(div1, file, 128, 3, 2519);
     			attr_dev(div2, "class", "view-title svelte-xmnc95");
-    			add_location(div2, file, 159, 4, 3339);
+    			add_location(div2, file, 162, 4, 3531);
     			attr_dev(div3, "id", "content");
     			set_style(div3, "float", "left");
     			set_style(div3, "width", "50%");
-    			add_location(div3, file, 162, 6, 3549);
+    			add_location(div3, file, 165, 6, 3741);
     			attr_dev(div4, "id", "rightThing");
     			set_style(div4, "float", "left");
     			set_style(div4, "width", "25%");
-    			add_location(div4, file, 169, 6, 3779);
+    			add_location(div4, file, 170, 6, 3961);
     			attr_dev(div5, "id", "the whole thing");
     			set_style(div5, "height", "100%");
     			set_style(div5, "width", "100%");
     			set_style(div5, "overflow", "hidden");
-    			add_location(div5, file, 161, 5, 3465);
+    			add_location(div5, file, 164, 5, 3657);
     			attr_dev(div6, "id", "selected-image-view-content");
     			attr_dev(div6, "class", "svelte-xmnc95");
-    			add_location(div6, file, 160, 4, 3388);
+    			add_location(div6, file, 163, 4, 3580);
     			attr_dev(div7, "id", "selected-image-view");
     			attr_dev(div7, "class", "view-panel svelte-xmnc95");
-    			add_location(div7, file, 158, 3, 3285);
+    			add_location(div7, file, 161, 3, 3477);
     			attr_dev(div8, "id", "sidebar");
     			set_style(div8, "width", "450px");
     			attr_dev(div8, "class", "svelte-xmnc95");
-    			add_location(div8, file, 122, 2, 2276);
+    			add_location(div8, file, 127, 2, 2475);
     			attr_dev(div9, "class", "view-title svelte-xmnc95");
-    			add_location(div9, file, 186, 4, 4213);
+    			add_location(div9, file, 184, 4, 4384);
     			attr_dev(line, "class", "axis svelte-xmnc95");
     			attr_dev(line, "x1", 50);
     			attr_dev(line, "x2", 950);
-    			add_location(line, file, 188, 5, 4304);
+    			add_location(line, file, 186, 5, 4475);
     			attr_dev(g1, "id", "xAxisTicks");
-    			add_location(g1, file, 189, 5, 4349);
+    			add_location(g1, file, 187, 5, 4520);
     			attr_dev(svg1, "width", "2000");
     			attr_dev(svg1, "height", "600");
     			attr_dev(svg1, "class", "svelte-xmnc95");
-    			add_location(svg1, file, 187, 4, 4267);
+    			add_location(svg1, file, 185, 4, 4438);
     			attr_dev(div10, "id", "score-distributions-view");
     			attr_dev(div10, "class", "view-panel svelte-xmnc95");
-    			add_location(div10, file, 185, 3, 4154);
+    			add_location(div10, file, 183, 3, 4325);
     			attr_dev(div11, "id", "main-section");
     			set_style(div11, "width", "1000px");
     			attr_dev(div11, "class", "svelte-xmnc95");
-    			add_location(div11, file, 184, 2, 4104);
+    			add_location(div11, file, 182, 2, 4275);
     			attr_dev(div12, "id", "container");
     			attr_dev(div12, "class", "svelte-xmnc95");
-    			add_location(div12, file, 121, 1, 2253);
-    			add_location(main, file, 117, 0, 2197);
+    			add_location(div12, file, 126, 1, 2452);
+    			add_location(main, file, 122, 0, 2396);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2420,8 +2601,8 @@ var app = (function () {
     			append_dev(div1, svg0);
     			append_dev(svg0, g0);
 
-    			for (let i = 0; i < each_blocks_2.length; i += 1) {
-    				each_blocks_2[i].m(g0, null);
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(g0, null);
     			}
 
     			append_dev(div8, t4);
@@ -2444,46 +2625,43 @@ var app = (function () {
     			append_dev(svg1, line);
     			append_dev(svg1, g1);
 
-    			for (let i = 0; i < each_blocks_1.length; i += 1) {
-    				each_blocks_1[i].m(g1, null);
-    			}
-
-    			append_dev(g1, each1_anchor);
-
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(g1, null);
     			}
+
+    			append_dev(g1, each1_anchor);
+    			if (if_block2) if_block2.m(g1, null);
     		},
-    		p: function update(ctx, [dirty]) {
-    			if (dirty & /*data, xScale, yScale, getColor, selected_point, highlight_bin, un_highlight*/ 981) {
-    				each_value_3 = /*data*/ ctx[6];
-    				validate_each_argument(each_value_3);
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*data, xScale, yScale, getColor, selected_point, highlight_bin, un_highlight*/ 3749) {
+    				each_value_5 = /*data*/ ctx[7];
+    				validate_each_argument(each_value_5);
     				let i;
 
-    				for (i = 0; i < each_value_3.length; i += 1) {
-    					const child_ctx = get_each_context_3(ctx, each_value_3, i);
+    				for (i = 0; i < each_value_5.length; i += 1) {
+    					const child_ctx = get_each_context_5(ctx, each_value_5, i);
 
-    					if (each_blocks_2[i]) {
-    						each_blocks_2[i].p(child_ctx, dirty);
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks_2[i] = create_each_block_3(child_ctx);
-    						each_blocks_2[i].c();
-    						each_blocks_2[i].m(g0, null);
+    						each_blocks_1[i] = create_each_block_5(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(g0, null);
     					}
     				}
 
-    				for (; i < each_blocks_2.length; i += 1) {
-    					each_blocks_2[i].d(1);
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
     				}
 
-    				each_blocks_2.length = each_value_3.length;
+    				each_blocks_1.length = each_value_5.length;
     			}
 
-    			if (/*selected_point*/ ctx[4] !== null) {
+    			if (/*selected_point*/ ctx[5] !== null) {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_1(ctx);
+    					if_block0 = create_if_block_2(ctx);
     					if_block0.c();
     					if_block0.m(div3, null);
     				}
@@ -2492,11 +2670,11 @@ var app = (function () {
     				if_block0 = null;
     			}
 
-    			if (/*selected_point*/ ctx[4] !== null) {
+    			if (/*selected_point*/ ctx[5] !== null) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
-    					if_block1 = create_if_block(ctx);
+    					if_block1 = create_if_block_1(ctx);
     					if_block1.c();
     					if_block1.m(div4, null);
     				}
@@ -2505,44 +2683,20 @@ var app = (function () {
     				if_block1 = null;
     			}
 
-    			if (dirty & /*xScale_new, xScaleTicks*/ 34) {
-    				each_value_2 = /*xScaleTicks*/ ctx[5];
-    				validate_each_argument(each_value_2);
+    			if (dirty[0] & /*xScale_new, xScaleTicks*/ 66) {
+    				each_value_4 = /*xScaleTicks*/ ctx[6];
+    				validate_each_argument(each_value_4);
     				let i;
 
-    				for (i = 0; i < each_value_2.length; i += 1) {
-    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
-
-    					if (each_blocks_1[i]) {
-    						each_blocks_1[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks_1[i] = create_each_block_2(child_ctx);
-    						each_blocks_1[i].c();
-    						each_blocks_1[i].m(g1, each1_anchor);
-    					}
-    				}
-
-    				for (; i < each_blocks_1.length; i += 1) {
-    					each_blocks_1[i].d(1);
-    				}
-
-    				each_blocks_1.length = each_value_2.length;
-    			}
-
-    			if (dirty & /*xScaleTicks, xScale_new, yScale_new, getColor*/ 170) {
-    				each_value = /*xScaleTicks*/ ctx[5];
-    				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context(ctx, each_value, i);
+    				for (i = 0; i < each_value_4.length; i += 1) {
+    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
 
     					if (each_blocks[i]) {
     						each_blocks[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i] = create_each_block_4(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(g1, null);
+    						each_blocks[i].m(g1, each1_anchor);
     					}
     				}
 
@@ -2550,18 +2704,31 @@ var app = (function () {
     					each_blocks[i].d(1);
     				}
 
-    				each_blocks.length = each_value.length;
+    				each_blocks.length = each_value_4.length;
+    			}
+
+    			if (/*instances*/ ctx[4] !== undefined) {
+    				if (if_block2) {
+    					if_block2.p(ctx, dirty);
+    				} else {
+    					if_block2 = create_if_block(ctx);
+    					if_block2.c();
+    					if_block2.m(g1, null);
+    				}
+    			} else if (if_block2) {
+    				if_block2.d(1);
+    				if_block2 = null;
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
-    			destroy_each(each_blocks_2, detaching);
+    			destroy_each(each_blocks_1, detaching);
     			if (if_block0) if_block0.d();
     			if (if_block1) if_block1.d();
-    			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
+    			if (if_block2) if_block2.d();
     		}
     	};
 
@@ -2597,21 +2764,26 @@ var app = (function () {
 
     	onMount(async () => {
     		const fetched = await fetch("static/prediction_results.json");
-    		instances = (await fetched.json()).test_instances;
+    		$$invalidate(4, instances = (await fetched.json()).test_instances);
     		console.log("raw data", instances);
-    		$$invalidate(4, selected_point = instances[0]);
+    		$$invalidate(5, selected_point = instances[0]);
     		colorScale = schemeCategory10;
 
-    		// Transform data
     		for (let k = 0; k < numClasses; ++k) {
     			let binsForClass = [];
 
     			for (let b = 0; b < numBins; ++b) {
-    				binsForClass.push({ "class": k, "binNo": b, "instances": [] });
+    				binsForClass.push({
+    					"class": k,
+    					"binNo": b,
+    					"instances": instances.filter(instance => k == instance.true_label && b == Math.min(Math.floor(instance.predicted_scores[instance.true_label] * numBins), numBins - 1))
+    				});
     			}
 
     			binsByClasses.push({ "class": k, "bins": binsForClass });
     		}
+
+    		console.log(binsByClasses);
 
     		instances.forEach(instance => {
     			data.push(instance);
@@ -2633,12 +2805,12 @@ var app = (function () {
     			Math.max(...data.map(record => record["projection"][1]))
     		]).range([0, canvasSize]));
 
-    		$$invalidate(1, xScale_new = linear().domain([0, 1]).range([0, 900]));
-    		$$invalidate(3, yScale_new = linear().domain([0, 1]).range([0, 500]));
-    		$$invalidate(4, selected_point = data[0]);
-    		$$invalidate(5, xScaleTicks = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]);
-    		console.log(xScaleTicks);
-    	});
+    		$$invalidate(1, xScale_new = linear().domain([0, 10]).range([0, 900]));
+    		$$invalidate(3, yScale_new = linear().domain([0, 10]).range([50, 400]));
+    		$$invalidate(5, selected_point = data[0]);
+    		$$invalidate(6, xScaleTicks = xScale_new.ticks(10));
+    		yScaleTicks = yScale_new.ticks(10);
+    	}); //console.log(xScaleTicks)
 
     	function getColor(label) {
     		return colorScale[parseInt(label)];
@@ -2664,12 +2836,12 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = (record, each_value_3, record_index) => {
+    	const click_handler = (record, each_value_5, record_index) => {
     		if (record.selected != true) {
-    			$$invalidate(4, selected_point = record);
+    			$$invalidate(5, selected_point = record);
     			highlight_bin(record.true_label);
     		} else {
-    			$$invalidate(6, each_value_3[record_index].selected = false, data);
+    			$$invalidate(7, each_value_5[record_index].selected = false, data);
     			un_highlight(record.true_label);
     		}
     	};
@@ -2705,13 +2877,13 @@ var app = (function () {
     		if ('xScale_new' in $$props) $$invalidate(1, xScale_new = $$props.xScale_new);
     		if ('yScale' in $$props) $$invalidate(2, yScale = $$props.yScale);
     		if ('yScale_new' in $$props) $$invalidate(3, yScale_new = $$props.yScale_new);
-    		if ('instances' in $$props) instances = $$props.instances;
-    		if ('selected_point' in $$props) $$invalidate(4, selected_point = $$props.selected_point);
+    		if ('instances' in $$props) $$invalidate(4, instances = $$props.instances);
+    		if ('selected_point' in $$props) $$invalidate(5, selected_point = $$props.selected_point);
     		if ('colorScale' in $$props) colorScale = $$props.colorScale;
-    		if ('xScaleTicks' in $$props) $$invalidate(5, xScaleTicks = $$props.xScaleTicks);
+    		if ('xScaleTicks' in $$props) $$invalidate(6, xScaleTicks = $$props.xScaleTicks);
     		if ('yScaleTicks' in $$props) yScaleTicks = $$props.yScaleTicks;
-    		if ('binsByClasses' in $$props) binsByClasses = $$props.binsByClasses;
-    		if ('data' in $$props) $$invalidate(6, data = $$props.data);
+    		if ('binsByClasses' in $$props) $$invalidate(8, binsByClasses = $$props.binsByClasses);
+    		if ('data' in $$props) $$invalidate(7, data = $$props.data);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2723,9 +2895,11 @@ var app = (function () {
     		xScale_new,
     		yScale,
     		yScale_new,
+    		instances,
     		selected_point,
     		xScaleTicks,
     		data,
+    		binsByClasses,
     		getColor,
     		highlight_bin,
     		un_highlight,
@@ -2736,7 +2910,7 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, {});
+    		init(this, options, instance, create_fragment, safe_not_equal, {}, null, [-1, -1]);
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
