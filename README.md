@@ -6,7 +6,7 @@ You must fill out the following form. Please see Canvas for detailed instruction
 ---
 - Name: Alexander Barajas-Ritchie
 - URL to video demo: https://youtu.be/lEw43l63Pr0
-- URL to deployed webpage: https://alex-barajas-hw3-p826wprpj-barajale.vercel.app
+- URL to deployed webpage: https://alex-barajas-hw3-barajale.vercel.app
 - Optional comment: Was unable to implement some of the functionality 
 
 ---
