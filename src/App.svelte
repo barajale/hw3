@@ -19,7 +19,6 @@
 	let xScaleTicks = [];
 	let yScaleTicks;
 	let flag;
-
 	const numClasses = 10;
 	const numBins = 10;
 	let binsByClasses = [];
@@ -166,7 +165,7 @@
 								highlight_class(record.true_label);
 								record.selected = true;
 								selected_point = record;
-								console.log(data);		
+								//console.log(data);		
 							}}
 							/> 
 						{/each}
@@ -227,7 +226,6 @@
 													<image href={"/static/images/"+ point.filename} alt="{point.filename}" width="10" height="10"
 														x = {50 + xScale_new(bin.binNo) + 10 * (j % 8)}
 														y = {yScale_new(binsForClass.class) + (-10 - (10 * (Math.floor((j/8)))))} 
-														
 														/>
 													<rect width="10" height="10"
 														x = {50 + xScale_new(bin.binNo) + 10 * (j % 8)}
@@ -235,12 +233,13 @@
 														style="fill: {getColor(point["true_label"])}; stroke: {getColor(point["predicted_label"])}; fill-opacity: {getFill(point)};"
 														on:click={()=>{
 															highlight_class(point.true_label);
+															console.log(point.true_label)
 															point.selected = true;
 															selected_point = point;
-															console.log(data);		
+	
+															//console.log("here");		
 														}}
 														/>
-													
 												{/each}	
 									{/each}
 								</g>
