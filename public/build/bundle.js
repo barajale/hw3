@@ -1761,46 +1761,48 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[15] = list[i];
+    	child_ctx[17] = list[i];
+    	child_ctx[19] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[18] = list[i];
-    	child_ctx[20] = i;
+    	child_ctx[20] = list[i];
+    	child_ctx[22] = i;
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[21] = list[i];
-    	child_ctx[23] = i;
+    	child_ctx[23] = list[i];
+    	child_ctx[24] = list;
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
     function get_each_context_3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[27] = list[i];
-    	child_ctx[29] = i;
+    	child_ctx[29] = list[i];
+    	child_ctx[19] = i;
     	return child_ctx;
     }
 
     function get_each_context_5(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[30] = list[i];
-    	child_ctx[31] = list;
-    	child_ctx[32] = i;
+    	child_ctx[31] = list[i];
+    	child_ctx[32] = list;
+    	child_ctx[33] = i;
     	return child_ctx;
     }
 
-    // (142:6) {#each data as record}
+    // (155:6) {#each data as record}
     function create_each_block_5(ctx) {
     	let circle;
     	let circle_id_value;
@@ -1811,27 +1813,24 @@ var app = (function () {
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[12](/*record*/ ctx[30], /*each_value_5*/ ctx[31], /*record_index*/ ctx[32]);
+    		return /*click_handler*/ ctx[12](/*record*/ ctx[31], /*each_value_5*/ ctx[32], /*record_index*/ ctx[33]);
     	}
 
     	const block = {
     		c: function create() {
     			circle = svg_element("circle");
-    			attr_dev(circle, "id", circle_id_value = "datapoint-" + /*record*/ ctx[30].id);
+    			attr_dev(circle, "id", circle_id_value = "datapoint-" + /*record*/ ctx[31].id);
 
-    			attr_dev(circle, "class", circle_class_value = "point " + (/*record*/ ctx[30].selected == true
-    			? "selected"
-    			: "cirlce") + " svelte-xmnc95");
+    			attr_dev(circle, "class", circle_class_value = "circle " + (/*record*/ ctx[31].selected == true
+    			? "this-one-is-selected"
+    			: "reg") + " svelte-1tsm7c9");
 
-    			attr_dev(circle, "cx", circle_cx_value = /*xScale*/ ctx[0](/*record*/ ctx[30].projection[0]) + 25);
-    			attr_dev(circle, "cy", circle_cy_value = /*yScale*/ ctx[2](/*record*/ ctx[30].projection[1]) + 25);
+    			attr_dev(circle, "cx", circle_cx_value = /*xScale*/ ctx[0](/*record*/ ctx[31].projection[0]) + 25);
+    			attr_dev(circle, "cy", circle_cy_value = /*yScale*/ ctx[2](/*record*/ ctx[31].projection[1]) + 25);
     			attr_dev(circle, "r", "3");
-    			set_style(circle, "fill", /*getColor*/ ctx[9](/*record*/ ctx[30]["true_label"]));
-    			set_style(circle, "stroke", /*getColor*/ ctx[9](/*record*/ ctx[30]["predicted_label"]));
-    			set_style(circle, "stroke-width", 2.2);
-    			set_style(circle, "stroke-opacity", .5);
-    			set_style(circle, "fill-opacity", .5);
-    			add_location(circle, file, 142, 7, 2771);
+    			set_style(circle, "fill", /*getColor*/ ctx[9](/*record*/ ctx[31]["true_label"]));
+    			set_style(circle, "stroke", /*getColor*/ ctx[9](/*record*/ ctx[31]["predicted_label"]));
+    			add_location(circle, file, 155, 7, 2897);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, circle, anchor);
@@ -1844,30 +1843,30 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty[0] & /*data*/ 128 && circle_id_value !== (circle_id_value = "datapoint-" + /*record*/ ctx[30].id)) {
+    			if (dirty[0] & /*data*/ 256 && circle_id_value !== (circle_id_value = "datapoint-" + /*record*/ ctx[31].id)) {
     				attr_dev(circle, "id", circle_id_value);
     			}
 
-    			if (dirty[0] & /*data*/ 128 && circle_class_value !== (circle_class_value = "point " + (/*record*/ ctx[30].selected == true
-    			? "selected"
-    			: "cirlce") + " svelte-xmnc95")) {
+    			if (dirty[0] & /*data*/ 256 && circle_class_value !== (circle_class_value = "circle " + (/*record*/ ctx[31].selected == true
+    			? "this-one-is-selected"
+    			: "reg") + " svelte-1tsm7c9")) {
     				attr_dev(circle, "class", circle_class_value);
     			}
 
-    			if (dirty[0] & /*xScale, data*/ 129 && circle_cx_value !== (circle_cx_value = /*xScale*/ ctx[0](/*record*/ ctx[30].projection[0]) + 25)) {
+    			if (dirty[0] & /*xScale, data*/ 257 && circle_cx_value !== (circle_cx_value = /*xScale*/ ctx[0](/*record*/ ctx[31].projection[0]) + 25)) {
     				attr_dev(circle, "cx", circle_cx_value);
     			}
 
-    			if (dirty[0] & /*yScale, data*/ 132 && circle_cy_value !== (circle_cy_value = /*yScale*/ ctx[2](/*record*/ ctx[30].projection[1]) + 25)) {
+    			if (dirty[0] & /*yScale, data*/ 260 && circle_cy_value !== (circle_cy_value = /*yScale*/ ctx[2](/*record*/ ctx[31].projection[1]) + 25)) {
     				attr_dev(circle, "cy", circle_cy_value);
     			}
 
-    			if (dirty[0] & /*data*/ 128) {
-    				set_style(circle, "fill", /*getColor*/ ctx[9](/*record*/ ctx[30]["true_label"]));
+    			if (dirty[0] & /*data*/ 256) {
+    				set_style(circle, "fill", /*getColor*/ ctx[9](/*record*/ ctx[31]["true_label"]));
     			}
 
-    			if (dirty[0] & /*data*/ 128) {
-    				set_style(circle, "stroke", /*getColor*/ ctx[9](/*record*/ ctx[30]["predicted_label"]));
+    			if (dirty[0] & /*data*/ 256) {
+    				set_style(circle, "stroke", /*getColor*/ ctx[9](/*record*/ ctx[31]["predicted_label"]));
     			}
     		},
     		d: function destroy(detaching) {
@@ -1881,14 +1880,14 @@ var app = (function () {
     		block,
     		id: create_each_block_5.name,
     		type: "each",
-    		source: "(142:6) {#each data as record}",
+    		source: "(155:6) {#each data as record}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (176:7) {#if selected_point !== null}
+    // (181:7) {#if selected_point !== null}
     function create_if_block_2(ctx) {
     	let img;
     	let img_src_value;
@@ -1900,7 +1899,7 @@ var app = (function () {
     			attr_dev(img, "alt", "");
     			attr_dev(img, "width", "80");
     			attr_dev(img, "height", "80");
-    			add_location(img, file, 176, 8, 3884);
+    			add_location(img, file, 181, 8, 3839);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -1919,14 +1918,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(176:7) {#if selected_point !== null}",
+    		source: "(181:7) {#if selected_point !== null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (181:8) {#if selected_point !== null}
+    // (186:8) {#if selected_point !== null}
     function create_if_block_1(ctx) {
     	let t0;
     	let t1_value = /*selected_point*/ ctx[5].id + "";
@@ -1956,9 +1955,9 @@ var app = (function () {
     			t6 = text("\n\t\t\t\t\t\t\t\t\tPredicted as ");
     			t7 = text(t7_value);
     			br2 = element("br");
-    			add_location(br0, file, 181, 33, 4134);
-    			add_location(br1, file, 182, 48, 4187);
-    			add_location(br2, file, 183, 54, 4246);
+    			add_location(br0, file, 186, 33, 4089);
+    			add_location(br1, file, 187, 48, 4142);
+    			add_location(br2, file, 188, 54, 4201);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -1997,19 +1996,19 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(181:8) {#if selected_point !== null}",
+    		source: "(186:8) {#if selected_point !== null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (198:6) {#each xScaleTicks as tick, i}
+    // (203:6) {#each xScaleTicks as tick, i}
     function create_each_block_4(ctx) {
     	let g;
     	let line;
     	let text_1;
-    	let t_value = /*tick*/ ctx[27] + "";
+    	let t_value = /*tick*/ ctx[29] + "";
     	let t;
     	let g_transform_value;
 
@@ -2019,14 +2018,14 @@ var app = (function () {
     			line = svg_element("line");
     			text_1 = svg_element("text");
     			t = text(t_value);
-    			attr_dev(line, "class", "axis svelte-xmnc95");
+    			attr_dev(line, "class", "axis svelte-1tsm7c9");
     			attr_dev(line, "y2", "-5");
-    			add_location(line, file, 199, 8, 4694);
+    			add_location(line, file, 204, 8, 4649);
     			attr_dev(text_1, "x", -10);
     			attr_dev(text_1, "y", "20");
-    			add_location(text_1, file, 200, 8, 4732);
-    			attr_dev(g, "transform", g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick*/ ctx[27])) + ", 0)");
-    			add_location(g, file, 198, 7, 4632);
+    			add_location(text_1, file, 205, 8, 4687);
+    			attr_dev(g, "transform", g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick*/ ctx[29])) + ", 0)");
+    			add_location(g, file, 203, 7, 4587);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, g, anchor);
@@ -2035,9 +2034,9 @@ var app = (function () {
     			append_dev(text_1, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*xScaleTicks*/ 64 && t_value !== (t_value = /*tick*/ ctx[27] + "")) set_data_dev(t, t_value);
+    			if (dirty[0] & /*xScaleTicks*/ 64 && t_value !== (t_value = /*tick*/ ctx[29] + "")) set_data_dev(t, t_value);
 
-    			if (dirty[0] & /*xScale_new, xScaleTicks*/ 66 && g_transform_value !== (g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick*/ ctx[27])) + ", 0)")) {
+    			if (dirty[0] & /*xScale_new, xScaleTicks*/ 66 && g_transform_value !== (g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick*/ ctx[29])) + ", 0)")) {
     				attr_dev(g, "transform", g_transform_value);
     			}
     		},
@@ -2050,17 +2049,17 @@ var app = (function () {
     		block,
     		id: create_each_block_4.name,
     		type: "each",
-    		source: "(198:6) {#each xScaleTicks as tick, i}",
+    		source: "(203:6) {#each xScaleTicks as tick, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (206:6) {#if instances !== undefined}
+    // (211:6) {#if instances !== undefined}
     function create_if_block(ctx) {
     	let each_1_anchor;
-    	let each_value = /*binsByClasses*/ ctx[8];
+    	let each_value = /*binsByClasses*/ ctx[7];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -2084,8 +2083,8 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*binsByClasses, xScale_new, yScale_new, getColor, xScaleTicks*/ 842) {
-    				each_value = /*binsByClasses*/ ctx[8];
+    			if (dirty[0] & /*binsByClasses, xScale_new, yScale_new, getColor, getFill, highlight_class, selected_point, data, xScaleTicks*/ 4074) {
+    				each_value = /*binsByClasses*/ ctx[7];
     				validate_each_argument(each_value);
     				let i;
 
@@ -2118,14 +2117,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(206:6) {#if instances !== undefined}",
+    		source: "(211:6) {#if instances !== undefined}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (212:9) {#each xScaleTicks as tick_1}
+    // (219:9) {#each xScaleTicks as tick_1}
     function create_each_block_3(ctx) {
     	let g;
     	let line;
@@ -2135,18 +2134,18 @@ var app = (function () {
     		c: function create() {
     			g = svg_element("g");
     			line = svg_element("line");
-    			attr_dev(line, "class", "axis svelte-xmnc95");
+    			attr_dev(line, "class", "axis svelte-1tsm7c9");
     			attr_dev(line, "y2", "-5");
-    			add_location(line, file, 213, 11, 5324);
-    			attr_dev(g, "transform", g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick_1*/ ctx[24])) + ", " + /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) + ")");
-    			add_location(g, file, 212, 10, 5226);
+    			add_location(line, file, 220, 11, 5537);
+    			attr_dev(g, "transform", g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick_1*/ ctx[26])) + ", " + /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + ")");
+    			add_location(g, file, 219, 10, 5439);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, g, anchor);
     			append_dev(g, line);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*xScale_new, xScaleTicks, yScale_new*/ 74 && g_transform_value !== (g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick_1*/ ctx[24])) + ", " + /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) + ")")) {
+    			if (dirty[0] & /*xScale_new, xScaleTicks, yScale_new, binsByClasses*/ 202 && g_transform_value !== (g_transform_value = "translate(" + (50 + /*xScale_new*/ ctx[1](/*tick_1*/ ctx[26])) + ", " + /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + ")")) {
     				attr_dev(g, "transform", g_transform_value);
     			}
     		},
@@ -2159,66 +2158,103 @@ var app = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(212:9) {#each xScaleTicks as tick_1}",
+    		source: "(219:9) {#each xScaleTicks as tick_1}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (219:12) {#each bin.instances as point, j}
+    // (226:12) {#each bin.instances as point, j}
     function create_each_block_2(ctx) {
     	let image;
+    	let image_href_value;
+    	let image_alt_value;
     	let image_x_value;
     	let image_y_value;
     	let rect;
     	let rect_x_value;
     	let rect_y_value;
+    	let mounted;
+    	let dispose;
+
+    	function click_handler_1() {
+    		return /*click_handler_1*/ ctx[13](/*point*/ ctx[23], /*each_value_2*/ ctx[24], /*j*/ ctx[25]);
+    	}
 
     	const block = {
     		c: function create() {
     			image = svg_element("image");
     			rect = svg_element("rect");
-    			attr_dev(image, "href", "/static/images/" + /*point*/ ctx[21].filename);
-    			attr_dev(image, "alt", /*point*/ ctx[21].filename);
+    			attr_dev(image, "href", image_href_value = "/static/images/" + /*point*/ ctx[23].filename);
+    			attr_dev(image, "alt", image_alt_value = /*point*/ ctx[23].filename);
     			attr_dev(image, "width", "10");
     			attr_dev(image, "height", "10");
-    			attr_dev(image, "x", image_x_value = 50 + /*xScale_new*/ ctx[1](/*bin*/ ctx[18].binNo) + 10 * (/*j*/ ctx[23] % 8));
-    			attr_dev(image, "y", image_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) + (-10 - 10 * Math.floor(/*j*/ ctx[23] / 8)));
-    			add_location(image, file, 219, 13, 5491);
+    			attr_dev(image, "x", image_x_value = 50 + /*xScale_new*/ ctx[1](/*bin*/ ctx[20].binNo) + 10 * (/*j*/ ctx[25] % 8));
+    			attr_dev(image, "y", image_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + (-10 - 10 * Math.floor(/*j*/ ctx[25] / 8)));
+    			add_location(image, file, 226, 13, 5704);
     			attr_dev(rect, "width", "10");
     			attr_dev(rect, "height", "10");
-    			attr_dev(rect, "x", rect_x_value = 50 + /*xScale_new*/ ctx[1](/*bin*/ ctx[18].binNo) + 10 * (/*j*/ ctx[23] % 8));
-    			attr_dev(rect, "y", rect_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) + (-10 - Math.floor(/*j*/ ctx[23] / 8) * 10));
-    			set_style(rect, "fill", /*getColor*/ ctx[9](/*point*/ ctx[21]["true_label"]));
-    			set_style(rect, "stroke", /*getColor*/ ctx[9](/*point*/ ctx[21]["predicted_label"]));
-    			set_style(rect, "fill-opacity", .5);
-    			add_location(rect, file, 224, 13, 5781);
+    			attr_dev(rect, "x", rect_x_value = 50 + /*xScale_new*/ ctx[1](/*bin*/ ctx[20].binNo) + 10 * (/*j*/ ctx[25] % 8));
+    			attr_dev(rect, "y", rect_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + (-10 - Math.floor(/*j*/ ctx[25] / 8) * 10));
+    			set_style(rect, "fill", /*getColor*/ ctx[9](/*point*/ ctx[23]["true_label"]));
+    			set_style(rect, "stroke", /*getColor*/ ctx[9](/*point*/ ctx[23]["predicted_label"]));
+    			set_style(rect, "fill-opacity", /*getFill*/ ctx[11](/*point*/ ctx[23]));
+    			add_location(rect, file, 231, 13, 5994);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, image, anchor);
     			insert_dev(target, rect, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(rect, "click", click_handler_1, false, false, false);
+    				mounted = true;
+    			}
     		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*xScale_new*/ 2 && image_x_value !== (image_x_value = 50 + /*xScale_new*/ ctx[1](/*bin*/ ctx[18].binNo) + 10 * (/*j*/ ctx[23] % 8))) {
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (dirty[0] & /*binsByClasses*/ 128 && image_href_value !== (image_href_value = "/static/images/" + /*point*/ ctx[23].filename)) {
+    				attr_dev(image, "href", image_href_value);
+    			}
+
+    			if (dirty[0] & /*binsByClasses*/ 128 && image_alt_value !== (image_alt_value = /*point*/ ctx[23].filename)) {
+    				attr_dev(image, "alt", image_alt_value);
+    			}
+
+    			if (dirty[0] & /*xScale_new, binsByClasses*/ 130 && image_x_value !== (image_x_value = 50 + /*xScale_new*/ ctx[1](/*bin*/ ctx[20].binNo) + 10 * (/*j*/ ctx[25] % 8))) {
     				attr_dev(image, "x", image_x_value);
     			}
 
-    			if (dirty[0] & /*yScale_new*/ 8 && image_y_value !== (image_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) + (-10 - 10 * Math.floor(/*j*/ ctx[23] / 8)))) {
+    			if (dirty[0] & /*yScale_new, binsByClasses*/ 136 && image_y_value !== (image_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + (-10 - 10 * Math.floor(/*j*/ ctx[25] / 8)))) {
     				attr_dev(image, "y", image_y_value);
     			}
 
-    			if (dirty[0] & /*xScale_new*/ 2 && rect_x_value !== (rect_x_value = 50 + /*xScale_new*/ ctx[1](/*bin*/ ctx[18].binNo) + 10 * (/*j*/ ctx[23] % 8))) {
+    			if (dirty[0] & /*xScale_new, binsByClasses*/ 130 && rect_x_value !== (rect_x_value = 50 + /*xScale_new*/ ctx[1](/*bin*/ ctx[20].binNo) + 10 * (/*j*/ ctx[25] % 8))) {
     				attr_dev(rect, "x", rect_x_value);
     			}
 
-    			if (dirty[0] & /*yScale_new*/ 8 && rect_y_value !== (rect_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class) + (-10 - Math.floor(/*j*/ ctx[23] / 8) * 10))) {
+    			if (dirty[0] & /*yScale_new, binsByClasses*/ 136 && rect_y_value !== (rect_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + (-10 - Math.floor(/*j*/ ctx[25] / 8) * 10))) {
     				attr_dev(rect, "y", rect_y_value);
+    			}
+
+    			if (dirty[0] & /*binsByClasses*/ 128) {
+    				set_style(rect, "fill", /*getColor*/ ctx[9](/*point*/ ctx[23]["true_label"]));
+    			}
+
+    			if (dirty[0] & /*binsByClasses*/ 128) {
+    				set_style(rect, "stroke", /*getColor*/ ctx[9](/*point*/ ctx[23]["predicted_label"]));
+    			}
+
+    			if (dirty[0] & /*binsByClasses*/ 128) {
+    				set_style(rect, "fill-opacity", /*getFill*/ ctx[11](/*point*/ ctx[23]));
     			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(image);
     			if (detaching) detach_dev(rect);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -2226,17 +2262,17 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(219:12) {#each bin.instances as point, j}",
+    		source: "(226:12) {#each bin.instances as point, j}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (218:9) {#each binsForClass.bins as bin, g}
+    // (225:9) {#each binsForClass.bins as bin, g}
     function create_each_block_1(ctx) {
     	let each_1_anchor;
-    	let each_value_2 = /*bin*/ ctx[18].instances;
+    	let each_value_2 = /*bin*/ ctx[20].instances;
     	validate_each_argument(each_value_2);
     	let each_blocks = [];
 
@@ -2260,8 +2296,8 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*xScale_new, binsByClasses, yScale_new, getColor*/ 778) {
-    				each_value_2 = /*bin*/ ctx[18].instances;
+    			if (dirty[0] & /*xScale_new, binsByClasses, yScale_new, getColor, getFill, highlight_class, selected_point, data*/ 4010) {
+    				each_value_2 = /*bin*/ ctx[20].instances;
     				validate_each_argument(each_value_2);
     				let i;
 
@@ -2294,25 +2330,36 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(218:9) {#each binsForClass.bins as bin, g}",
+    		source: "(225:9) {#each binsForClass.bins as bin, g}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (207:7) {#each binsByClasses as binsForClass}
+    // (212:7) {#each binsByClasses as binsForClass, i}
     function create_each_block(ctx) {
     	let g;
-    	let text_1;
+    	let text0;
     	let t0;
-    	let t1_value = /*binsForClass*/ ctx[15].class + "";
+    	let t1_value = /*binsForClass*/ ctx[17].class + "";
     	let t1;
-    	let text_1_y_value;
+    	let text0_y_value;
+    	let text1;
+    	let t2;
+    	let t3_value = /*binsForClass*/ ctx[17].class + "";
+    	let t3;
+    	let text1_y_value;
+    	let text2;
+    	let t4;
+    	let t5_value = /*binsForClass*/ ctx[17].class + "";
+    	let t5;
+    	let text2_y_value;
     	let line;
     	let line_y__value;
     	let line_y__value_1;
     	let each0_anchor;
+    	let g_transform_value;
     	let each_value_3 = /*xScaleTicks*/ ctx[6];
     	validate_each_argument(each_value_3);
     	let each_blocks_1 = [];
@@ -2321,7 +2368,7 @@ var app = (function () {
     		each_blocks_1[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
     	}
 
-    	let each_value_1 = /*binsForClass*/ ctx[15].bins;
+    	let each_value_1 = /*binsForClass*/ ctx[17].bins;
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -2332,9 +2379,15 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			g = svg_element("g");
-    			text_1 = svg_element("text");
+    			text0 = svg_element("text");
     			t0 = text("Class ");
     			t1 = text(t1_value);
+    			text1 = svg_element("text");
+    			t2 = text("Predicted: ");
+    			t3 = text(t3_value);
+    			text2 = svg_element("text");
+    			t4 = text("Labled: ");
+    			t5 = text(t5_value);
     			line = svg_element("line");
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
@@ -2347,23 +2400,37 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(text_1, "x", "" + (0 + ","));
-    			attr_dev(text_1, "y", text_1_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class));
-    			add_location(text_1, file, 209, 9, 4964);
-    			attr_dev(line, "class", "axis svelte-xmnc95");
-    			attr_dev(line, "y1", line_y__value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class));
-    			attr_dev(line, "y2", line_y__value_1 = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class));
+    			attr_dev(text0, "x", "" + (0 + ","));
+    			attr_dev(text0, "y", text0_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class));
+    			add_location(text0, file, 214, 9, 4922);
+    			attr_dev(text1, "x", "" + (0 + ","));
+    			attr_dev(text1, "y", text1_y_value = "" + (/*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + 14 + ","));
+    			set_style(text1, "font-size", "10");
+    			add_location(text1, file, 215, 9, 5019);
+    			attr_dev(text2, "x", "" + (0 + ","));
+    			attr_dev(text2, "y", text2_y_value = "" + (/*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + 28 + ","));
+    			set_style(text2, "font-size", "10");
+    			add_location(text2, file, 216, 9, 5148);
+    			attr_dev(line, "class", "axis svelte-1tsm7c9");
+    			attr_dev(line, "y1", line_y__value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class));
+    			attr_dev(line, "y2", line_y__value_1 = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class));
     			attr_dev(line, "x1", 50);
     			attr_dev(line, "x2", 950);
-    			add_location(line, file, 210, 9, 5061);
-    			attr_dev(g, "transform", "translate(0, " + (/*binsForClass*/ ctx[15].class * 20 + 15) + ")");
-    			add_location(g, file, 207, 8, 4893);
+    			add_location(line, file, 217, 9, 5274);
+    			attr_dev(g, "transform", g_transform_value = "translate(0, " + (/*binsForClass*/ ctx[17].class * 20 + 15) + ")");
+    			add_location(g, file, 212, 8, 4851);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, g, anchor);
-    			append_dev(g, text_1);
-    			append_dev(text_1, t0);
-    			append_dev(text_1, t1);
+    			append_dev(g, text0);
+    			append_dev(text0, t0);
+    			append_dev(text0, t1);
+    			append_dev(g, text1);
+    			append_dev(text1, t2);
+    			append_dev(text1, t3);
+    			append_dev(g, text2);
+    			append_dev(text2, t4);
+    			append_dev(text2, t5);
     			append_dev(g, line);
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
@@ -2377,19 +2444,33 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*yScale_new*/ 8 && text_1_y_value !== (text_1_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class))) {
-    				attr_dev(text_1, "y", text_1_y_value);
+    			if (dirty[0] & /*binsByClasses*/ 128 && t1_value !== (t1_value = /*binsForClass*/ ctx[17].class + "")) set_data_dev(t1, t1_value);
+
+    			if (dirty[0] & /*yScale_new, binsByClasses*/ 136 && text0_y_value !== (text0_y_value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class))) {
+    				attr_dev(text0, "y", text0_y_value);
     			}
 
-    			if (dirty[0] & /*yScale_new*/ 8 && line_y__value !== (line_y__value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class))) {
+    			if (dirty[0] & /*binsByClasses*/ 128 && t3_value !== (t3_value = /*binsForClass*/ ctx[17].class + "")) set_data_dev(t3, t3_value);
+
+    			if (dirty[0] & /*yScale_new, binsByClasses*/ 136 && text1_y_value !== (text1_y_value = "" + (/*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + 14 + ","))) {
+    				attr_dev(text1, "y", text1_y_value);
+    			}
+
+    			if (dirty[0] & /*binsByClasses*/ 128 && t5_value !== (t5_value = /*binsForClass*/ ctx[17].class + "")) set_data_dev(t5, t5_value);
+
+    			if (dirty[0] & /*yScale_new, binsByClasses*/ 136 && text2_y_value !== (text2_y_value = "" + (/*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class) + 28 + ","))) {
+    				attr_dev(text2, "y", text2_y_value);
+    			}
+
+    			if (dirty[0] & /*yScale_new, binsByClasses*/ 136 && line_y__value !== (line_y__value = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class))) {
     				attr_dev(line, "y1", line_y__value);
     			}
 
-    			if (dirty[0] & /*yScale_new*/ 8 && line_y__value_1 !== (line_y__value_1 = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[15].class))) {
+    			if (dirty[0] & /*yScale_new, binsByClasses*/ 136 && line_y__value_1 !== (line_y__value_1 = /*yScale_new*/ ctx[3](/*binsForClass*/ ctx[17].class))) {
     				attr_dev(line, "y2", line_y__value_1);
     			}
 
-    			if (dirty[0] & /*xScale_new, xScaleTicks, yScale_new, binsByClasses*/ 330) {
+    			if (dirty[0] & /*xScale_new, xScaleTicks, yScale_new, binsByClasses*/ 202) {
     				each_value_3 = /*xScaleTicks*/ ctx[6];
     				validate_each_argument(each_value_3);
     				let i;
@@ -2413,8 +2494,8 @@ var app = (function () {
     				each_blocks_1.length = each_value_3.length;
     			}
 
-    			if (dirty[0] & /*binsByClasses, xScale_new, yScale_new, getColor*/ 778) {
-    				each_value_1 = /*binsForClass*/ ctx[15].bins;
+    			if (dirty[0] & /*binsByClasses, xScale_new, yScale_new, getColor, getFill, highlight_class, selected_point, data*/ 4010) {
+    				each_value_1 = /*binsForClass*/ ctx[17].bins;
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -2436,6 +2517,10 @@ var app = (function () {
 
     				each_blocks.length = each_value_1.length;
     			}
+
+    			if (dirty[0] & /*binsByClasses*/ 128 && g_transform_value !== (g_transform_value = "translate(0, " + (/*binsForClass*/ ctx[17].class * 20 + 15) + ")")) {
+    				attr_dev(g, "transform", g_transform_value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(g);
@@ -2448,7 +2533,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(207:7) {#each binsByClasses as binsForClass}",
+    		source: "(212:7) {#each binsByClasses as binsForClass, i}",
     		ctx
     	});
 
@@ -2484,7 +2569,7 @@ var app = (function () {
     	let line;
     	let g1;
     	let each1_anchor;
-    	let each_value_5 = /*data*/ ctx[7];
+    	let each_value_5 = /*data*/ ctx[8];
     	validate_each_argument(each_value_5);
     	let each_blocks_1 = [];
 
@@ -2551,67 +2636,67 @@ var app = (function () {
 
     			each1_anchor = empty();
     			if (if_block2) if_block2.c();
-    			attr_dev(h1, "class", "svelte-xmnc95");
-    			add_location(h1, file, 132, 1, 2452);
-    			attr_dev(div0, "class", "view-title svelte-xmnc95");
-    			add_location(div0, file, 138, 4, 2617);
+    			attr_dev(h1, "class", "svelte-1tsm7c9");
+    			add_location(h1, file, 145, 1, 2578);
+    			attr_dev(div0, "class", "view-title svelte-1tsm7c9");
+    			add_location(div0, file, 151, 4, 2743);
     			attr_dev(g0, "id", "scatterplotData");
-    			add_location(g0, file, 140, 5, 2710);
+    			add_location(g0, file, 153, 5, 2836);
     			set_style(svg0, "width", "400");
     			set_style(svg0, "height", "400");
-    			attr_dev(svg0, "class", "svelte-xmnc95");
-    			add_location(svg0, file, 139, 4, 2667);
+    			attr_dev(svg0, "class", "svelte-1tsm7c9");
+    			add_location(svg0, file, 152, 4, 2793);
     			attr_dev(div1, "id", "projection-view");
-    			attr_dev(div1, "class", "view-panel svelte-xmnc95");
-    			add_location(div1, file, 137, 3, 2567);
-    			attr_dev(div2, "class", "view-title svelte-xmnc95");
-    			add_location(div2, file, 171, 4, 3579);
+    			attr_dev(div1, "class", "view-panel svelte-1tsm7c9");
+    			add_location(div1, file, 150, 3, 2693);
+    			attr_dev(div2, "class", "view-title svelte-1tsm7c9");
+    			add_location(div2, file, 176, 4, 3534);
     			attr_dev(div3, "id", "content");
     			set_style(div3, "float", "left");
     			set_style(div3, "width", "50%");
-    			add_location(div3, file, 174, 6, 3789);
+    			add_location(div3, file, 179, 6, 3744);
     			attr_dev(div4, "id", "rightThing");
     			set_style(div4, "float", "left");
     			set_style(div4, "width", "25%");
-    			add_location(div4, file, 179, 6, 4009);
+    			add_location(div4, file, 184, 6, 3964);
     			attr_dev(div5, "id", "the whole thing");
     			set_style(div5, "height", "100%");
     			set_style(div5, "width", "100%");
     			set_style(div5, "overflow", "hidden");
-    			add_location(div5, file, 173, 5, 3705);
+    			add_location(div5, file, 178, 5, 3660);
     			attr_dev(div6, "id", "selected-image-view-content");
-    			attr_dev(div6, "class", "svelte-xmnc95");
-    			add_location(div6, file, 172, 4, 3628);
+    			attr_dev(div6, "class", "svelte-1tsm7c9");
+    			add_location(div6, file, 177, 4, 3583);
     			attr_dev(div7, "id", "selected-image-view");
-    			attr_dev(div7, "class", "view-panel svelte-xmnc95");
-    			add_location(div7, file, 170, 3, 3525);
+    			attr_dev(div7, "class", "view-panel svelte-1tsm7c9");
+    			add_location(div7, file, 175, 3, 3480);
     			attr_dev(div8, "id", "sidebar");
     			set_style(div8, "width", "450px");
-    			attr_dev(div8, "class", "svelte-xmnc95");
-    			add_location(div8, file, 136, 2, 2523);
-    			attr_dev(div9, "class", "view-title svelte-xmnc95");
-    			add_location(div9, file, 193, 4, 4432);
-    			attr_dev(line, "class", "axis svelte-xmnc95");
+    			attr_dev(div8, "class", "svelte-1tsm7c9");
+    			add_location(div8, file, 149, 2, 2649);
+    			attr_dev(div9, "class", "view-title svelte-1tsm7c9");
+    			add_location(div9, file, 198, 4, 4387);
+    			attr_dev(line, "class", "axis svelte-1tsm7c9");
     			attr_dev(line, "x1", 50);
     			attr_dev(line, "x2", 950);
-    			add_location(line, file, 195, 5, 4523);
+    			add_location(line, file, 200, 5, 4478);
     			attr_dev(g1, "id", "xAxisTicks");
-    			add_location(g1, file, 196, 5, 4568);
+    			add_location(g1, file, 201, 5, 4523);
     			attr_dev(svg1, "width", "2000");
     			attr_dev(svg1, "height", "600");
-    			attr_dev(svg1, "class", "svelte-xmnc95");
-    			add_location(svg1, file, 194, 4, 4486);
+    			attr_dev(svg1, "class", "svelte-1tsm7c9");
+    			add_location(svg1, file, 199, 4, 4441);
     			attr_dev(div10, "id", "score-distributions-view");
-    			attr_dev(div10, "class", "view-panel svelte-xmnc95");
-    			add_location(div10, file, 192, 3, 4373);
+    			attr_dev(div10, "class", "view-panel svelte-1tsm7c9");
+    			add_location(div10, file, 197, 3, 4328);
     			attr_dev(div11, "id", "main-section");
     			set_style(div11, "width", "1000px");
-    			attr_dev(div11, "class", "svelte-xmnc95");
-    			add_location(div11, file, 191, 2, 4323);
+    			attr_dev(div11, "class", "svelte-1tsm7c9");
+    			add_location(div11, file, 196, 2, 4278);
     			attr_dev(div12, "id", "container");
-    			attr_dev(div12, "class", "svelte-xmnc95");
-    			add_location(div12, file, 135, 1, 2500);
-    			add_location(main, file, 131, 0, 2444);
+    			attr_dev(div12, "class", "svelte-1tsm7c9");
+    			add_location(div12, file, 148, 1, 2626);
+    			add_location(main, file, 144, 0, 2570);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2660,8 +2745,8 @@ var app = (function () {
     			if (if_block2) if_block2.m(g1, null);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*data, xScale, yScale, getColor, selected_point, highlight_bin, un_highlight*/ 3749) {
-    				each_value_5 = /*data*/ ctx[7];
+    			if (dirty[0] & /*data, xScale, yScale, getColor, highlight_class, selected_point*/ 1829) {
+    				each_value_5 = /*data*/ ctx[8];
     				validate_each_argument(each_value_5);
     				let i;
 
@@ -2789,6 +2874,7 @@ var app = (function () {
     	let colorScale;
     	let xScaleTicks = [];
     	let yScaleTicks;
+    	let flag;
     	let binsByClasses = [];
     	let data = [];
 
@@ -2798,6 +2884,7 @@ var app = (function () {
     		console.log("raw data", instances);
     		$$invalidate(5, selected_point = instances[0]);
     		colorScale = schemeCategory10;
+    		flag = 0;
 
     		for (let k = 0; k < numClasses; ++k) {
     			let binsForClass = [];
@@ -2846,18 +2933,27 @@ var app = (function () {
     		return colorScale[parseInt(label)];
     	}
 
-    	function highlight_bin(bin) {
+    	function highlight_class(bin) {
     		data.forEach(record => {
     			if (record.true_label == bin) {
     				record.selected = true;
+    				console.log("check");
+    			} else {
+    				record.selected = false;
     			}
     		});
     	}
 
-    	function un_highlight(bin) {
-    		data.forEach(record => {
-    			record.selected = false;
-    		});
+    	function getFill(point) {
+    		if (flag) {
+    			if (point.selected) {
+    				return .8;
+    			} else {
+    				return .2;
+    			}
+    		}
+
+    		return .8;
     	}
 
     	const writable_props = [];
@@ -2867,13 +2963,17 @@ var app = (function () {
     	});
 
     	const click_handler = (record, each_value_5, record_index) => {
-    		if (record.selected != true) {
-    			$$invalidate(5, selected_point = record);
-    			highlight_bin(record.true_label);
-    		} else {
-    			$$invalidate(7, each_value_5[record_index].selected = false, data);
-    			un_highlight(record.true_label);
-    		}
+    		highlight_class(record.true_label);
+    		$$invalidate(8, each_value_5[record_index].selected = true, data);
+    		$$invalidate(5, selected_point = record);
+    		console.log(data);
+    	};
+
+    	const click_handler_1 = (point, each_value_2, j) => {
+    		highlight_class(point.true_label);
+    		$$invalidate(7, each_value_2[j].selected = true, binsByClasses);
+    		$$invalidate(5, selected_point = point);
+    		console.log(data);
     	};
 
     	$$self.$capture_state = () => ({
@@ -2893,14 +2993,15 @@ var app = (function () {
     		canvasSize,
     		xScaleTicks,
     		yScaleTicks,
+    		flag,
     		numClasses,
     		numBins,
     		binsByClasses,
     		data,
     		getColor,
-    		highlight_bin,
-    		un_highlight,
-    		scaleX
+    		highlight_class,
+    		scaleX,
+    		getFill
     	});
 
     	$$self.$inject_state = $$props => {
@@ -2913,8 +3014,9 @@ var app = (function () {
     		if ('colorScale' in $$props) colorScale = $$props.colorScale;
     		if ('xScaleTicks' in $$props) $$invalidate(6, xScaleTicks = $$props.xScaleTicks);
     		if ('yScaleTicks' in $$props) yScaleTicks = $$props.yScaleTicks;
-    		if ('binsByClasses' in $$props) $$invalidate(8, binsByClasses = $$props.binsByClasses);
-    		if ('data' in $$props) $$invalidate(7, data = $$props.data);
+    		if ('flag' in $$props) flag = $$props.flag;
+    		if ('binsByClasses' in $$props) $$invalidate(7, binsByClasses = $$props.binsByClasses);
+    		if ('data' in $$props) $$invalidate(8, data = $$props.data);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2929,12 +3031,13 @@ var app = (function () {
     		instances,
     		selected_point,
     		xScaleTicks,
-    		data,
     		binsByClasses,
+    		data,
     		getColor,
-    		highlight_bin,
-    		un_highlight,
-    		click_handler
+    		highlight_class,
+    		getFill,
+    		click_handler,
+    		click_handler_1
     	];
     }
 

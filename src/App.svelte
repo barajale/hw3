@@ -18,6 +18,7 @@
 	const canvasSize = 350;
 	let xScaleTicks = [];
 	let yScaleTicks;
+	let flag;
 
 	const numClasses = 10;
 	const numBins = 10;
@@ -30,6 +31,7 @@
 		console.log("raw data",instances);
 		selected_point = instances[0];
 		colorScale = schemeCategory10;
+		flag = 0
 
 
 
@@ -109,23 +111,34 @@
 		return colorScale[parseInt(label)]
 	};
 
-	function highlight_bin(bin){
+	function highlight_class(bin){
 		data.forEach(record => {
 			if (record.true_label == bin){
 				record.selected = true;
+				console.log("check")
 			}
-		});
-	}
-	function un_highlight(bin){
-		data.forEach(record => {
-			record.selected = false;
-		});
+			else{
+				record.selected = false;
+			}
+		})
 	}
 
 	function scaleX(x){
 		if(x > 4){
 
 		}
+	}
+
+	function getFill(point){
+		if(flag){
+			if(point.selected){
+				return .8
+			}
+			else{
+				return .2
+			}
+		}
+		return .8
 	}
 </script>
 
@@ -142,26 +155,18 @@
 						{#each data as record}
 							<circle
 							id="datapoint-{record.id}"
-							class="point {record.selected == true ? "selected" : "cirlce" }"
+							class="circle {record.selected == true ? "this-one-is-selected": "reg" }"
 							cx = {xScale( record.projection[0]) + 25}
 							cy = {yScale( record.projection[1]) + 25}
 							r=3
 							style="fill: {getColor(record["true_label"])};
 									stroke: {getColor(record["predicted_label"])};
-									stroke-width: {2.2};
-									stroke-opacity: {.5};
-									fill-opacity: {.5};"
-							
+									"
 							on:click={()=>{
-								if (record.selected != true){
-									selected_point = record
-									highlight_bin(record.true_label);
-								}
-								else{
-									record.selected = false;
-									un_highlight(record.true_label);
-								}
-					
+								highlight_class(record.true_label);
+								record.selected = true;
+								selected_point = record;
+								console.log(data);		
 							}}
 							/> 
 						{/each}
@@ -204,10 +209,12 @@
 						{/each}
 
 						{#if instances !== undefined}
-							{#each binsByClasses as binsForClass}
+							{#each binsByClasses as binsForClass, i}
 								<g transform="translate(0, {binsForClass.class * 20 + 15})">
 
 									<text x = {0}, y = {yScale_new(binsForClass.class)}> Class {binsForClass.class} </text>
+									<text x = {0}, y = {yScale_new(binsForClass.class) + 14}, style="font-size:10"> Predicted: {binsForClass.class} </text>
+									<text x = {0}, y = {yScale_new(binsForClass.class) + 28}, style="font-size:10"> Labled: {binsForClass.class} </text>
 									<line class="axis" y1 = {yScale_new(binsForClass.class)} y2 = {yScale_new(binsForClass.class)} x1= {50} x2={950} />
 									{#each xScaleTicks as tick_1}
 										<g transform="translate({50 + xScale_new(tick_1)}, {yScale_new(binsForClass.class)})">
@@ -225,8 +232,16 @@
 													<rect width="10" height="10"
 														x = {50 + xScale_new(bin.binNo) + 10 * (j % 8)}
 														y = {yScale_new(binsForClass.class) + (- 10 - (Math.floor((j/8)) * 10))} 
-														style="fill: {getColor(point["true_label"])}; stroke: {getColor(point["predicted_label"])}; fill-opacity: {.5};"/>
-												{/each}
+														style="fill: {getColor(point["true_label"])}; stroke: {getColor(point["predicted_label"])}; fill-opacity: {getFill(point)};"
+														on:click={()=>{
+															highlight_class(point.true_label);
+															point.selected = true;
+															selected_point = point;
+															console.log(data);		
+														}}
+														/>
+													
+												{/each}	
 									{/each}
 								</g>
 							{/each}
@@ -271,11 +286,18 @@
 	svg {
 		margin: 5px;
 	}
-	circle.selected{
+
+	circle.this-one-is-selected{
 		stroke-width: 2.2;
-		stroke: black;
-		fill-opacity: 0.1;
+		fill-opacity: 0.8;
+		stroke-opacity: 0.8;
 	}
+	circle.reg{
+		stroke-width: 2.2;
+		fill-opacity: 0.2;
+		stroke-opacity: 0.2;
+	}
+
 	line.axis {
 		stroke: gray;
 	}
